@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import db from "./config/connection.js";
 import cors from 'cors'
 import usersRouter from './routes/users.js'
+import postsRouter from './routes/posts.js'
 
 dotenv.config();
 
@@ -13,7 +14,8 @@ app.use(cors({origin: 'http://localhost:5173'}))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("api/users", usersRouter)
+app.use("/api/users", usersRouter)
+app.use("/api/posts", postsRouter)
 
 
 db.once("open", () => {
